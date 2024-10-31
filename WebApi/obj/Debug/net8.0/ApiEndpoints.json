@@ -1,0 +1,75 @@
+[
+  {
+    "ContainingType": "WebApi.Controllers.DogsController",
+    "Method": "GetAllDogs",
+    "RelativePath": "api/Dogs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "SortingProperty",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortingOption",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi.Controllers.DogsController",
+    "Method": "CreateDog",
+    "RelativePath": "api/Dogs",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dogDto",
+        "Type": "Application.DTOs.DogDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi.Controllers.DogsController",
+    "Method": "GetDogByName",
+    "RelativePath": "api/Dogs/{name}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi.Controllers.PingController",
+    "Method": "Get",
+    "RelativePath": "api/Ping",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
