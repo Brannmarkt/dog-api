@@ -13,11 +13,11 @@ public class DogsController(IDogService dogService) : ControllerBase
     public async Task<IActionResult> GetAllDogs([FromQuery] DogsQueryingOptions options)
     {
         var result = await dogService.GetAllDogsAsync(options);
-        return result.Result switch
+        return result.operationResult switch
         {
-            DogServiceResult.NotFound => NotFound("No dogs were found"),
-            DogServiceResult.InvalidData => BadRequest("Page size and number should be positive numbers"),
-            DogServiceResult.Success => Ok(result.DogsDto),
+            DogServiceResultStatus.NotFound => NotFound("No dogs were found"),
+            DogServiceResultStatus.InvalidData => BadRequest("Page size and number should be positive numbers"),
+            DogServiceResultStatus.Success => Ok(result.dataResult),
             _ => StatusCode(500, "An unexpected error occurred")
         };
     }
@@ -26,10 +26,10 @@ public class DogsController(IDogService dogService) : ControllerBase
     public async Task<IActionResult> GetDogByName(string name)
     {
         var result = await dogService.GetDogByNameAsync(name);
-        return result.Result switch
+        return result.operationResult switch
         {
-            DogServiceResult.NotFound => NotFound($"There is no dog named '{name}'"),
-            DogServiceResult.Success => Ok(result.DogDto), 
+            DogServiceResultStatus.NotFound => NotFound($"There is no dog named '{name}'"),
+            DogServiceResultStatus.Success => Ok(result.dataResult), 
             _ => StatusCode(500, "An unexpected error occurred")
         };
     }
@@ -38,11 +38,11 @@ public class DogsController(IDogService dogService) : ControllerBase
     public async Task<IActionResult> CreateDog([FromBody] DogDto dogDto)
     {
         var result = await dogService.CreateDogAsync(dogDto);
-        return result switch
+        return result.operationResult switch
         {
-            DogServiceResult.InvalidData => BadRequest("Weight and tail length should be positive numbers"),
-            DogServiceResult.Conflict => BadRequest($"A dog named {dogDto.Name} already exists"),
-            DogServiceResult.Success => Ok(result.ToString()),
+            DogServiceResultStatus.InvalidData => BadRequest("Weight and tail length should be positive numbers"),
+            DogServiceResultStatus.Conflict => BadRequest($"A dog named {dogDto.Name} already exists"),
+            DogServiceResultStatus.Success => Ok(result.dataResult),
             _ => StatusCode(500, "An unexpected error occurred")
         };
     }

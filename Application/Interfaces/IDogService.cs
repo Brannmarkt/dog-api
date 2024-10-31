@@ -3,7 +3,13 @@ using Application.Helpers;
 
 namespace Application.Interfaces;
 
-public enum DogServiceResult
+public record DogServiceResult<T>
+(
+    DogServiceResultStatus operationResult,
+    T? dataResult
+);
+
+public enum DogServiceResultStatus
 {
     Success,
     NotFound,
@@ -19,7 +25,7 @@ public enum DogSortingProperty
 
 public interface IDogService
 {
-    Task<(DogServiceResult Result, IEnumerable<DogDto>? DogsDto)> GetAllDogsAsync(DogsQueryingOptions options);
-    Task<(DogServiceResult Result, DogDto? DogDto)> GetDogByNameAsync(string name);
-    Task<DogServiceResult> CreateDogAsync(DogDto dogDto);
+    Task<DogServiceResult<IEnumerable<DogDto>>> GetAllDogsAsync(DogsQueryingOptions options);
+    Task<DogServiceResult<DogDto>> GetDogByNameAsync(string name);
+    Task<DogServiceResult<DogDto?>> CreateDogAsync(DogDto dto);
 }

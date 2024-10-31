@@ -6,7 +6,9 @@ public enum SortingOption
     Descending
 }
 
-public record QueryingOptions(
+public record QueryingOptions
+(
     SortingOption SortingOption, 
     int PageNumber = 1, 
-    int PageSize = 10);
+    int PageSize = 10
+);

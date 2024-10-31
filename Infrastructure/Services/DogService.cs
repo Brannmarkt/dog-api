@@ -8,11 +8,11 @@ namespace Infrastructure.Services;
 
 public class DogService(IDogRepository dogRepository, IMapper mapper) : IDogService
 {
-    public async Task<(DogServiceResult, IEnumerable<DogDto>?)> GetAllDogsAsync(DogsQueryingOptions options)
+    public async Task<DogServiceResult<IEnumerable<DogDto>>> GetAllDogsAsync(DogsQueryingOptions options)
     {
         if (options == null || options.PageNumber <= 0 || options.PageSize <= 0)
         {
-            return (DogServiceResult.InvalidData, null);
+            return new DogServiceResult<IEnumerable<DogDto>>(DogServiceResultStatus.InvalidData, null);
         }
         IEnumerable<DogEntity> dogs = options.SortingProperty switch
         {
@@ -23,36 +23,38 @@ public class DogService(IDogRepository dogRepository, IMapper mapper) : IDogServ
         
         if (!dogs.Any()) 
         {
-            return (DogServiceResult.NotFound, null);
+            return new DogServiceResult<IEnumerable<DogDto>>(DogServiceResultStatus.NotFound, null);
         }
+    
         var dogsDto = dogs.Select(d => mapper.Map<DogDto>(d));
-        return (DogServiceResult.Success, dogsDto);
+        return new DogServiceResult<IEnumerable<DogDto>>(DogServiceResultStatus.Success, dogsDto);
     }
 
-    public async Task<(DogServiceResult, DogDto?)> GetDogByNameAsync(string name)
+    public async Task<DogServiceResult<DogDto>> GetDogByNameAsync(string name)
     {
         var dog = await dogRepository.GetAsync(u => u.Name == name);
         if (dog == null)
         {
-            return (DogServiceResult.NotFound, null);
+            return new DogServiceResult<DogDto>(DogServiceResultStatus.NotFound, null);
         }
         var dogDto = mapper.Map<DogDto>(dog);
-        return (DogServiceResult.Success, dogDto);
+        return new DogServiceResult<DogDto>(DogServiceResultStatus.Success, dogDto);
     }
 
-    public async Task<DogServiceResult> CreateDogAsync(DogDto dogDto)
+    public async Task<DogServiceResult<DogDto?>> CreateDogAsync(DogDto dogDto)
     {
         if (await dogRepository.GetAsync(u => u.Name == dogDto.Name) != null)
         {
-            return DogServiceResult.Conflict;
+            return new DogServiceResult<DogDto?>(DogServiceResultStatus.Conflict, null);
         }
 
-        if(dogDto.Weight <= 0 || dogDto.Weight <= 0)
+        if(dogDto.Weight <= 0 || dogDto.TailLength <= 0)
         {
-            return DogServiceResult.InvalidData;
+            return new DogServiceResult<DogDto?>(DogServiceResultStatus.InvalidData, null);
         }
         var dog = mapper.Map<DogEntity>(dogDto);
         await dogRepository.AddAsync(dog);
-        return DogServiceResult.Success;
+
+        return new DogServiceResult<DogDto?>(DogServiceResultStatus.Success, dogDto);
     }
 }
