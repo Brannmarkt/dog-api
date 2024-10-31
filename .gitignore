@@ -434,3 +434,6 @@ Desktop.ini
 *.db
 *.db-shm
 *.db-wal
+bin
+obj
+packages
