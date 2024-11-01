@@ -4,6 +4,8 @@ This repository contains a REST API built with C# that interacts with a Microsof
 ```
 https://github.com/Brannmarkt/dog-api.git
 ```
+To run the application locally make sure that you set up the database connection. Update the connection string in the appsettings.json
+
 ## Overview 
 The project consists of 4 parts: 
 1. Application contains all interfaces and DTOs. It has reference to Domain layer 
