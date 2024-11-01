@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{29A725F6-2BB3-45FB-9E93-943C0366AB85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "src\WebApi\WebApi.csproj", "{29A725F6-2BB3-45FB-9E93-943C0366AB85}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{4035513F-7006-4EFA-945B-54350F0A8874}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{4035513F-7006-4EFA-945B-54350F0A8874}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{3DC4C5AA-834C-40C9-8995-0B868914291A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{3DC4C5AA-834C-40C9-8995-0B868914291A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F4AEB963-F2DC-4491-9479-DC4A5D21C823}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{F4AEB963-F2DC-4491-9479-DC4A5D21C823}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D872388D-08F9-48BF-B8DF-207CB2124A7A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F9B86D1A-B4B2-4DB5-9F41-2894843B608B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogServiceOperations.UnitTests", "DogServiceOperations.UnitTests\DogServiceOperations.UnitTests.csproj", "{A8DFD72A-5AAB-45A3-A238-E14348B58A38}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests\DogServiceOperations.UnitTests", "tests\DogServiceOperations.UnitTests\DogServiceOperations.UnitTests.csproj", "{A8DFD72A-5AAB-45A3-A238-E14348B58A38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
